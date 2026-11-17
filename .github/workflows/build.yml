@@ -23,6 +23,9 @@ jobs:
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
 
       - name: Install Android packages
         run: |
@@ -30,7 +33,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip KING_DATA_CENTER_PRO_SOURCE.zip
+          unzip -o KING_DATA_CENTER_PRO_SOURCE.zip
 
       - name: Install Gradle
         uses: gradle/actions/setup-gradle@v4
