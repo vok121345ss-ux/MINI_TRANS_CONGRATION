@@ -26,10 +26,11 @@ jobs:
         with:
           accept-android-sdk-licenses: true
           log-accepted-android-sdk-licenses: false
-          packages: |
-            platform-tools
-            platforms;android-34
-            build-tools;34.0.0
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+
+      - name: Check source archive
+        run: |
+          test -f KING_DATA_CENTER_PRO_SOURCE.zip
 
       - name: Extract project
         run: unzip -o KING_DATA_CENTER_PRO_SOURCE.zip
