@@ -24,14 +24,17 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          accept-android-sdk-licenses: true
           packages: |
             platform-tools
             platforms;android-34
             build-tools;34.0.0
 
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses
+
       - name: Extract project
-        run: unzip -o KING_DATA_CENTER_PRO_SOURCE.zip
+        run: |
+          unzip -o KING_DATA_CENTER_PRO_SOURCE.zip
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -39,7 +42,8 @@ jobs:
           gradle-version: '8.6'
 
       - name: Build APK
-        run: gradle -p KING_DATA_CENTER_PRO/android-companion assembleDebug
+        run: |
+          gradle -p KING_DATA_CENTER_PRO/android-companion assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
